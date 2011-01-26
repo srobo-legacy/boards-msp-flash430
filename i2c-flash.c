@@ -5,7 +5,7 @@ volatile bool i2c_flash_received;
 
 void i2c_flash_init( void )
 {
-	i2c_flash_received = FALSE;
+	i2c_flash_received = false;
 }
 
 /* Transmits the firmware version to the master. */
@@ -60,5 +60,5 @@ uint8_t i2c_flashr_crc( uint8_t* buf )
 void i2c_flashw_confirm( uint8_t* buf )
 {
 	/* TODO: Do the CRC */
-	i2c_flash_received = TRUE;
+	i2c_flash_received = true;
 }

@@ -1,7 +1,7 @@
 #ifndef __FLASH_H
 #define __FLASH_H
 #include <stdint.h>
-#include <bool.h>
+#include <stdbool.h>
 #include "dev.h"
 #include "fw_ver.h"
 

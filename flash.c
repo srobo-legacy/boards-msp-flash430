@@ -78,7 +78,7 @@ void flash_init( void )
 	/* Nothing's been written yet */
 	next_chunk = other_area;
 
-	firmware_received = FALSE;
+	firmware_received = false;
 
 	last_erased = mem_segment(other_area - 1);
 }
@@ -120,7 +120,7 @@ void flash_rx_chunk( uint16_t c_addr, const uint8_t *fw )
 		if( c == IVT + 24 )
 		{
 			/* Got the IVT */
-			firmware_received = TRUE;
+			firmware_received = true;
 
 			next_chunk = 0;
 		}
