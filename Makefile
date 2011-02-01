@@ -11,7 +11,7 @@ C_FILES := flash.c i2c-flash.c sric-flash.c fw_ver.c
 H_FILES := flash.h i2c-flash.h sric-flash.h fw_ver.h
 
 libflash430.a: flash.o i2c-flash.o sric-flash.o fw_ver.o
-	msp430-ar r $@ flash.o i2c-flash.o fw_ver.o
+	msp430-ar r $@ $^
 
 %.o: %.c %.h
 ifndef ARCH
