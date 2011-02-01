@@ -6,6 +6,12 @@
  * __MSP430_HAS_FLASH__.  But for now, we're doing it based on the
  * device */
 
+#ifdef __MSP430_2274__
+#define FLASH_AREA_0 0x8000
+#define FLASH_AREA_1 0xc000
+#define FLASH_AREA_LEN 0x3e00
+#endif
+
 #ifdef __MSP430_2254__
 #define FLASH_AREA_0 0xc000
 #define FLASH_AREA_1 0xe000
@@ -16,6 +22,12 @@
 #define FLASH_AREA_0 0xe000
 #define FLASH_AREA_1 0xf000
 #define FLASH_AREA_LEN 0xe00
+#endif
+
+#ifdef __MSP430_167__
+#define FLASH_AREA_0 0x8000
+#define FLASH_AREA_1 0xc000
+#define FLASH_AREA_LEN 0x3e00
 #endif
 
 #ifdef __MSP430_169__
