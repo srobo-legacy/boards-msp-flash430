@@ -8,6 +8,12 @@ void sric_flash_init( void )
 	sric_flash_received = false;
 }
 
+void sric_flash_poll( void )
+{
+	if (sric_flash_received)
+		flash_switchover();
+}
+
 /* Transmits the firmware version to the master. */
 uint8_t sric_flashr_fw_ver(const sric_if_t *iface)
 {

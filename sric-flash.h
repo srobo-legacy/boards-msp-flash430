@@ -21,6 +21,10 @@
 
 void sric_flash_init( void );
 
+/* Should be called in the main loop of the program. Handles
+ * switching to new firmware and writing to the flash asynchronously */
+void sric_flash_poll( void );
+
 /* Transmits the firmware version to the master. */
 uint8_t sric_flashr_fw_ver(const sric_if_t *iface);
 
