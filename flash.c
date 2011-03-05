@@ -45,6 +45,10 @@ void flash_write_chunk( const uint8_t *source, uint16_t *dest )
 {
 	uint8_t i;
 
+	/* Save WDT state and then disable it. Also clear it just to be safe */
+	uint8_t wdt_state = 0xff & WDTCTL;
+	WDTCTL = WDTPW | WDTHOLD | WDTCNTCL;
+
 	/* Check that the section has been erased */
 	if( last_erased < mem_segment( dest ) )
 		flash_erase_segment( dest );
@@ -57,6 +61,9 @@ void flash_write_chunk( const uint8_t *source, uint16_t *dest )
 
 	flash_write_mode_off();
 	flash_lock();
+
+	/* Restore WDT state */
+	WDTCTL = WDTPW | wdt_state;
 }
 
 void flash_init( void )
