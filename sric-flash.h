@@ -43,7 +43,4 @@ uint8_t sric_flashr_crc(const sric_if_t *iface);
    4-byte password expected. */
 uint8_t sric_flashw_confirm(const sric_if_t *iface);
 
-/* When the firmware has been received and verified, this becomes TRUE */
-extern volatile bool sric_flash_received;
-
 #endif	/* __SRIC_FLASH */
