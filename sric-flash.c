@@ -18,6 +18,10 @@ void sric_flash_poll( void )
 	/* Check that we've received the flash 25 times */
 	repeat( repeat( if( !flash_received() ) return ) );
 
+	/* Clear the magic number so that the new firmware has
+	 no chance of believing it has received new firmware */
+	sric_flash_received = 0;
+
 	flash_switchover();
 }
 
