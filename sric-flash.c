@@ -1,17 +1,28 @@
 #include "sric-flash.h"
 #include "flash.h"
 
-volatile bool sric_flash_received;
+#define FLASH_MAGIC 0x6452
+
+volatile uint16_t sric_flash_received = 0;
+
+#define flash_received() ( sric_flash_received == FLASH_MAGIC )
+#define repeat(x) do { x; x; x; x; x; } while(0)
 
 void sric_flash_init( void )
 {
-	sric_flash_received = false;
+	sric_flash_received = 0;
 }
 
 void sric_flash_poll( void )
 {
-	if (sric_flash_received)
-		flash_switchover();
+	/* Check that we've received the flash 25 times */
+	repeat( repeat( if( !flash_received() ) return ) );
+
+	/* Clear the magic number so that the new firmware has
+	 no chance of believing it has received new firmware */
+	sric_flash_received = 0;
+
+	flash_switchover();
 }
 
 /* Transmits the firmware version to the master. */
@@ -74,6 +85,6 @@ uint8_t sric_flashr_crc(const sric_if_t *iface)
 uint8_t sric_flashw_confirm(const sric_if_t *iface)
 {
 	/* TODO: Do the CRC */
-	sric_flash_received = true;
+	sric_flash_received = FLASH_MAGIC;
 	return 0;
 }
