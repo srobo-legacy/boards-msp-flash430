@@ -5,7 +5,8 @@ endif
 CFLAGS ?= -g -mmcu=${ARCH} -Wall -O3
 CFLAGS += -I./types
 
-override CFLAGS += -DFW_VER=0
+FW_VER ?= 0
+override CFLAGS += -DFW_VER=${FW_VER}
 
 C_FILES := flash.c i2c-flash.c sric-flash.c fw_ver.c
 H_FILES := flash.h i2c-flash.h sric-flash.h fw_ver.h
