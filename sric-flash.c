@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include "sric-flash.h"
 #include "flash.h"
 
@@ -51,6 +52,9 @@ uint8_t sric_flashw_fw_chunk(const sric_if_t *iface)
 	   4-19: The data */
 	ver = buf[0] | (((uint16_t)buf[1]) << 8);
 	addr = buf[2] | (((uint16_t)buf[3]) << 8);
+
+	if (sric_flash_conf.led_control != NULL)
+		sric_flash_conf.led_control(true);
 
 	flash_rx_chunk( addr, buf + 4 );
 	return 0;

@@ -19,6 +19,14 @@
 #include <stdbool.h>
 #include "../libsric/sric-client.h"
 
+typedef struct {
+	/* A callback to control an LED on the board, it's turned
+	 * on when the firmware is being updated */
+	void (*led_control) (bool state);
+} sric_flash_conf_t;
+
+extern const sric_flash_conf_t sric_flash_conf;
+
 void sric_flash_init( void );
 
 /* Should be called in the main loop of the program. Handles
